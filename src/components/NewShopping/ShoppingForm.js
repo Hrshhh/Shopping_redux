@@ -3,20 +3,22 @@ import './ShoppingForm.css';
 import { addTodo } from '../../actions';
 import { useDispatch,useSelector } from 'react-redux';
 
-const ShoppingForm = () => {
+const ShoppingForm = (props) => {
 
   const dispatch = useDispatch();
   const {shop_listt} = useSelector((Appstate) => 
   ({shop_listt: Appstate.user.shop_items
   }))
-console.log("s",shop_listt)
+// console.log("s",shop_listt)
   const [formValue , setFormValue] = useState({title:"",area:"Thane",category:"Grocery", opn_date:"", cls_date:""});
   const onHandleChange = (event)=> {
+
+    const re = /^[A-Za-z]+$/;
    
     const {name, value} = event.target
     switch(name){
     case "title":
-      setFormValue({...formValue, "title": value});
+      (re.test(value) ? setFormValue({...formValue, "title": value}): setFormValue(""))
       break;
     case "area":
       setFormValue({...formValue, "area": value});
@@ -51,8 +53,13 @@ console.log("s",shop_listt)
 
   }
 
+  const handleSubmit=(e)=>{
+    e.preventDefault()
+    dispatch(addTodo(formValue))
+  }
+
   return (
-    <form onSubmit={() => dispatch(addTodo(formValue))}>
+    <form onSubmit={(e) => handleSubmit(e)}>
       <div className='new-shopping__controls'>
         <div className='new-shopping__control'>
           <label>Title</label>

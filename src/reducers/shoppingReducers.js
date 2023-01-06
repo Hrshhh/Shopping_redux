@@ -40,14 +40,16 @@ const shoppingReducers = (state=initialState, action) => {
         case ("ADD_TODO"):
             return{
                 ...state,
-                shop_items: [...state.shop_items, action.payload]
+                shop_items: [...state.shop_items, action.payload.data]
             }
 
         case ("DELETE_TODO"):
             return{
                 ...state,
-                shop_items: state.shop_items.filter((shop) => shop.id !== action.payload)
+                shop_items: state.shop_items.filter((shop) => shop.id !== action.payload.id)
             }
+        default:
+            return state
             
     }
 }

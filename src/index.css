@@ -10,5 +10,7 @@ html {
 
 body {
   margin: 0;
-  background-color: #3f3f3f;
+  background-image: url("main-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: 1690px 100vh;
 }

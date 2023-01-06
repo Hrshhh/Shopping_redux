@@ -15,3 +15,18 @@ export const deleteTodo = (id) => {
         }
     }
 }
+
+export const selectArea = (id) => {
+    return{
+        type: "SELECT_AREA",
+        payload: id
+        
+    }
+}
+
+export const selectCategory = (id) => {
+    return{
+        type: "SELECT_CATEGORY",
+        payload: id
+    }
+}
